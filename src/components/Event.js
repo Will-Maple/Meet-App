@@ -4,14 +4,14 @@ const Event = ({ event }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <li>
+    <li className='event'>
       <h3>{event.summary}</h3>
       <p>{event.created}</p>
       <p>{event.location}</p>
-      <button onClick={() => setShowDetails(!showDetails)}>
+      <button className='details-btn' onClick={() => setShowDetails(!showDetails)}>
         {showDetails ? 'hide details' : 'show details'}
       </button>
-      {showDetails && <p>{event.description}</p>}
+      {showDetails && <p data-testid='event-details'>{event.description}</p>}
     </li>
   );
 }

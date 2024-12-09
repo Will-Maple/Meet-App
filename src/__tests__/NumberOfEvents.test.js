@@ -21,6 +21,9 @@ describe('<NumberOfEvents /> component', () => {
 
   test('value becomes what user inputs', async () => {
     const user = userEvent.setup();
+    NumberOfEventsComponent.rerender(<NumberOfEvents
+      setCurrentNOE={() => { }}
+    />);
     await user.type(NumberOfEventsTextBox, '{backspace}{backspace}10');
 
     expect(NumberOfEventsTextBox.value).toBe("10")

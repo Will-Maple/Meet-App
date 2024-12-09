@@ -34,10 +34,10 @@ describe('<Event /> component', () => {
 
   test('Details are shown after show details is clicked', async () => {
     const user = userEvent.setup();
-    const showDetails = EventComponent.queryByRole('show details');
+    const showDetails = EventComponent.queryByText('show details');
     await user.click(showDetails);
 
-    expect(EventComponent.queryByText(allEvents[0].description)).toBeInTheDocument();
+    expect(EventComponent.getByTestId("event-details")).toBeInTheDocument();
   });
 
   test('Details are hidden after hide details is clicked', async () => {
