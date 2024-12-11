@@ -46,7 +46,7 @@ defineFeature(feature, test => {
       await user.type(citySearchInput, "Berlin");
     });
 
-    then('the user should receive a list of cities (suggestions) that match what they’ve typed', () => {
+    then('the user should receive a list of cities (suggestions) that match what they’ve typed.', () => {
       const suggestionListItems = within(CitySearchDOM).queryAllByRole('listitem');
       expect(suggestionListItems).toHaveLength(2);
     });
@@ -84,7 +84,7 @@ defineFeature(feature, test => {
 
     and('the user should receive a list of upcoming events in that city', async () => {
       const EventListDOM = AppDOM.querySelector('#event-list');
-      const EventListItems = within(EventListDOM).queryAllByRole('listitems');
+      const EventListItems = within(EventListDOM).queryAllByRole('listitem');
       const allEvents = await getEvents();
 
       const berlinEvents = allEvents.filter(event => event.location === citySearchInput.value)
