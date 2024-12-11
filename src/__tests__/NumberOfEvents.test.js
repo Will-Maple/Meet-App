@@ -7,7 +7,8 @@ describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsTextBox;
 
   beforeEach(() => {
-    NumberOfEventsComponent = render(<NumberOfEvents />);
+    NumberOfEventsComponent = render(<NumberOfEvents
+      setErrorAlert={() => { }} />);
     NumberOfEventsTextBox = NumberOfEventsComponent.queryByRole('textbox');
   })
 
@@ -23,6 +24,7 @@ describe('<NumberOfEvents /> component', () => {
     const user = userEvent.setup();
     NumberOfEventsComponent.rerender(<NumberOfEvents
       setCurrentNOE={() => { }}
+      setErrorAlert={() => { }}
     />);
     await user.type(NumberOfEventsTextBox, '{backspace}{backspace}10');
 
