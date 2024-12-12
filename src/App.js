@@ -26,7 +26,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    if (!navigator.onLine()) {
+    if (!navigator.onLine) {
       setWarningAlert("You are offline! Events are taken from local storage.")
     } else {
       setWarningAlert("")
