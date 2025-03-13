@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
@@ -17,14 +17,14 @@ const App = () => {
   const [errorAlert, setErrorAlert] = useState("");
   const [warningAlert, setWarningAlert] = useState("");
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const allEvents = await getEvents();
     const filteredEvents = currentCity === "See all cities" ?
       allEvents :
       allEvents.filter(event => event.location === currentCity)
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
-  }
+  }, [currentCity, currentNOE])
 
   useEffect(() => {
     if (!navigator.onLine) {
@@ -33,7 +33,7 @@ const App = () => {
       setWarningAlert("")
     }
     fetchData();
-  }, [currentCity, currentNOE]);
+  }, [fetchData]);
 
   return (
     <div className="App">
