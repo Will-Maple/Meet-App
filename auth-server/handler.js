@@ -52,6 +52,10 @@ module.exports.getAccessToken = async (event) => {
     .catch((error) => {
       return {
         statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify(error),
       };
     });
@@ -92,6 +96,10 @@ module.exports.getCalendarEvents = async (event) => {
     .catch((error) => {
       return {
         statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify(error),
       };
     });
