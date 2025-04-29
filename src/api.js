@@ -11,6 +11,7 @@ const checkToken = async (accessToken) => {
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   );
   const result = await response.json();
+  console.log('checkToken', { result })
   return result;
 };
 
@@ -21,21 +22,25 @@ export const getEvents = async () => {
 
   if (!navigator.onLine) {
     const events = localStorage.getItem('lastEvents');
-    return events ? JSON.parse(events) : [];
+    return events ? JSON.parse(events) || [] : [];
   }
 
   const token = await getAccessToken();
 
   if (token) {
-    /*removeQuery();*/
-    const url = "https://qej2si1m17.execute-api.us-east-1.amazonaws.com/dev/api/token/" + token;
+    removeQuery();
+    const url = "https://qej2si1m17.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
       localStorage.setItem("lastEvents", JSON.stringify(result.events));
-      return result.events;
-    } else return null;
+      console.log({ result })
+      return result.events || [];
+    }
+
+    return [];
   }
+  return []
 };
 
 const removeQuery = () => {

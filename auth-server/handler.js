@@ -15,6 +15,7 @@ module.exports.getAuthURL = async () => {
     access_type: "offline",
     scope: SCOPES,
   });
+  console.log({ authUrl })
 
   return {
     statusCode: 200,
@@ -29,7 +30,9 @@ module.exports.getAuthURL = async () => {
 };
 
 module.exports.getAccessToken = async (event) => {
+  console.log({ event, parameters: event.pathParameters })
   const code = decodeURIComponent(`${event.pathParameters.code}`);
+  console.log({ code })
 
   return new Promise((resolve, reject) => {
     oAuth2Client.getToken(code, (error, response) => {
@@ -63,6 +66,7 @@ module.exports.getAccessToken = async (event) => {
 
 module.exports.getCalendarEvents = async (event) => {
   const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+  console.log({ access_token })
   oAuth2Client.setCredentials({ access_token })
 
   return new Promise((resolve, reject) => {
