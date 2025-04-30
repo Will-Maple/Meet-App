@@ -11,6 +11,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
+    console.log (value, 'sup bro?')
     const filteredLocations = allLocations ? allLocations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     }) : [];
