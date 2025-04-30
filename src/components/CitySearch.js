@@ -30,6 +30,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
+    console.log(value);
     setQuery(value);
     setShowSuggestions(false);
     setCurrentCity(value);
