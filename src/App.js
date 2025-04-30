@@ -23,8 +23,9 @@ const App = () => {
       allEvents :
       allEvents.filter(event => event.location === currentCity)
     setEvents(filteredEvents.slice(0, currentNOE));
+    console.log(events);
     setAllLocations(extractLocations(allEvents));
-  }, [currentCity, currentNOE])
+  }, [currentCity, currentNOE, events])
 
   useEffect(() => {
     if (!navigator.onLine) {
