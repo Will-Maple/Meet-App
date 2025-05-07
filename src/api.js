@@ -26,24 +26,9 @@ export const getEvents = async () => {
   }
 
   const token = await getAccessToken();
+  console.log({token});
 
-  if (token) {
-    removeQuery();
-    const url = "https://qej2si1m17.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
-    const response = await fetch(url);
-    const result = await response.json();
-    if (result) {
-      localStorage.setItem("lastEvents", JSON.stringify(result.events));
-      console.log({ result })
-      return result.events || [];
-    }
-
-    return [];
-  }
-  return []
-};
-
-const removeQuery = () => {
+  const removeQuery = () => {
   let newurl;
   if (window.history.pushState && window.location.pathname) {
     newurl =
@@ -54,6 +39,23 @@ const removeQuery = () => {
     newurl = window.location.protocol + "//" + window.location.host;
     window.history.pushState("", "", newurl);
   }
+};
+
+  if (token) {
+    removeQuery();
+    const url = "https://qej2si1m17.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
+    console.log(url);
+    const response = await fetch(url);
+    console.log(response);
+    const result = await response.json();
+    console.log(result);
+    if (result) {
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
+      console.log({ result })
+      return result.events || [];
+    }
+  }
+  return []
 };
 
 const getToken = async (code) => {
@@ -84,6 +86,7 @@ export const getAccessToken = async () => {
       const { authUrl } = result;
       return (window.location.href = authUrl);
     }
-    return code && getToken(code);
-  }
+    return getToken(code);
+  } 
+  return accessToken
 };

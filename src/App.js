@@ -19,13 +19,16 @@ const App = () => {
 
   const fetchData = useCallback(async () => {
     const allEvents = await getEvents();
+    console.log(currentCity)
+    console.log(allEvents)
     const filteredEvents = currentCity === "See all cities" ?
       allEvents :
       allEvents.filter(event => event.location === currentCity)
     setEvents(filteredEvents.slice(0, currentNOE));
-    console.log(events);
+    console.log(filteredEvents);
+    console.log(allEvents);
     setAllLocations(extractLocations(allEvents));
-  }, [currentCity, currentNOE, events])
+  }, [currentCity, currentNOE])
 
   useEffect(() => {
     if (!navigator.onLine) {
