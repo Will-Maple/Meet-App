@@ -1,53 +1,60 @@
-# Meet App
- This is an app to find events in local cities, made to learn Serverless, Progressive web apps and use a  TDD workflow
+# MeetApp (React, Jest, Serverless)
+A test-driven-development built serverless (Amazon Lambda) app that fetches events from Google’s calendar api, visualizes them and lists them by city. Built as a Progressive Web Application to also provide Native friendliness.
+<br>
+<br>
 
-Show/Hide Event Details
+<img src="https://github.com/user-attachments/assets/19664915-6b96-4c36-b7a5-a858b9680de6" width=70% alt="Image of app"> 
 
-As a user,
-I should be able to see more details and hide them when I am done,
-So that I can scroll and learn more about what I am insterested in.
+## Tech-stack
+- React 
+- Jest
+- Cucumber
+- Puppeteer
+- Amazon Lambda
+- Serverless
+- Progressive Web Application (PWA)
+- Google Calendar API
 
-Given a list of events is presented;
-When a user clicks on one of them;
-Then the user should recieve more details or hide details already presented.
+## Steps to Run 
 
+### Clone repo
+- Of course!
+### Install Dependancies
+```sh
+ npm install serverless --save -dev
+```
 
-Specify Number of Events
+```sh
+npm install --save-dev jest
+npm install jest-cucumber --save-dev
+```
 
-As a user,
-I should be able to see the number of events
-So that I can I can decide whether to scroll or filter.
+```sh
+npm install --save-dev puppeteer
+```
 
-Given a user has searched for events;
-When the user recieves the results of the search;
-Then the user should see the number of events the search yields.
+### Run locally
+```sh
+npm run start
+```
 
-Use the App When Offline
+### To Deploy
+- First...
+```sh
+npm run build
+```
+- And then...
+```sh
+serverless deploy
+```
 
-As a user,
-I should be able to use the app when offline,
-So that I can always check the times for things even in less than ideal conditions.
+### To run tests
+```sh
+npm run test
+```   
 
-Given the app was opened while offline;
-When the user user interacts with the app;
-Then the user should still be able to see their events.
-
-Add an App Shortcut to the Home Sreen
-
-As a user,
-I should be able to navigate to the app from my homescreen,
-So that it will be convient to access and quick to check details.
-
-Given the user was editing their mainscreen on their phone;
-When the user is selecting app shortcuts to add to their mainscreen;
-Then the user should be able to select this app to add.
-
-Display Charts Visualizing Event Details
-
-As a user,
-I should be able to see event details in chart visualization,
-So that it will be easy to digest the event's more complex information.
-
-Given the user has selected an event to see more details;
-When they scroll to see or click on a visualization button;
-They should be presented with a chart displaying information about the event.
+## Dependencies
+- Serverless
+- React
+- Jest
+- Puppeteer
